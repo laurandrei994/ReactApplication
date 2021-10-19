@@ -7,7 +7,7 @@ import Image from "./components/image";
 function App() {
   return (
     <div className="App">
-      <Image/>
+      <Login/>
     </div>
   );
 }
