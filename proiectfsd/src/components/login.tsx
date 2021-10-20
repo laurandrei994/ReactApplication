@@ -26,7 +26,8 @@ const Login = () => {
                             label="Remember me"
                         /> */}
 
-                        <Button type='submit' color='primary' variant='contained' style={btstyle} fullWidth>Login</Button>
+                        <Button type='submit' color='primary' variant='contained' style={btstyle} fullWidth onClick= {() => {
+                            console.log("Clicked the login button")}}>Login </Button>
                                 
                         <Typography>
                             <Link href="#">

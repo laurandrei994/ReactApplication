@@ -41,9 +41,10 @@ const useStyles = makeStyles({
         margin: "8px"
     },
     paperRoot: {
-        maxWidth: 345,
+        marginTop: theme.spacing(10),
+        marginLeft: theme.spacing(35),
+        maxWidth: "65%",
     }
-
 });
 
 function ImageForm() {
@@ -58,12 +59,14 @@ function ImageForm() {
     }
 
     return(
-        <Box display="flex" justifyContent="center" alignItems="center" width={800} height={500} margin='50px auto' bgcolor="primary.light">
+        <Box justifyContent="center" alignItems="center" width={800} height={500} margin='50px auto' bgcolor="primary.light">
             <TextField
                 id="photo-upload"
                 name="upload-photo"
                 type="file"
-                margin="normal"
+                margin="dense"
+                fullWidth
+                variant="outlined"
                 InputLabelProps={{
                     shrink: true,
                 }}
@@ -71,7 +74,7 @@ function ImageForm() {
             />
             {
                 file.length > 0 &&
-                <Card className={classes.paperRoot}>
+                <Card className={classes.paperRoot} variant="outlined">
                     <CardActionArea>
                         <CardMedia
                             component="img"
