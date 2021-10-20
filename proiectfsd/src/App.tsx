@@ -12,13 +12,13 @@ function App() {
       <nav>
         <ul>
           <li>
-            <Link to="/login">Login</Link>
+            <Link to="/login">Page 1 - Login</Link>
           </li>
           <li>
-            <Link to="/table">Table</Link>
+            <Link to="/table">Page 2 - Table</Link>
           </li>
           <li>
-            <Link to="/image">Image</Link>
+            <Link to="/image">Page 3 - Image Upload</Link>
           </li>
         </ul>
       </nav>

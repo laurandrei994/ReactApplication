@@ -281,7 +281,7 @@ export default function EnhancedTable() {
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box display="flex" justifyContent="center" alignItems="center" width={900} height={500} margin='50px auto' bgcolor="primary.main">
       <Paper sx={{ width: '100%', mb: 2 }}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TextField } from '@material-ui/core';
+import { TextField, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { createTheme } from '@material-ui/core/styles'
 
@@ -58,36 +58,30 @@ function ImageForm() {
     }
 
     return(
-            <div className={classes.divForm}>
-
-                <h1 style={{ margin: 8 }}>
-                    Upload an Image
-                </h1>
-
-                <TextField
-                    id="photo-upload"
-                    name="upload-photo"
-                    type="file"
-                    fullWidth
-                    margin="normal"
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    onChange={ handleChange }
-                />
-                {
-                    file.length > 0 &&
-                    <Card className={classes.paperRoot}>
-                        <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                image={file}
-                                title="Image"
-                            />
-                        </CardActionArea>
-                    </Card>
-                }
-            </div>
+        <Box display="flex" justifyContent="center" alignItems="center" width={800} height={500} margin='50px auto' bgcolor="primary.light">
+            <TextField
+                id="photo-upload"
+                name="upload-photo"
+                type="file"
+                margin="normal"
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                onChange={ handleChange }
+            />
+            {
+                file.length > 0 &&
+                <Card className={classes.paperRoot}>
+                    <CardActionArea>
+                        <CardMedia
+                            component="img"
+                            image={file}
+                            title="Image"
+                        />
+                    </CardActionArea>
+                </Card>
+            }
+        </Box>
     )
 }
 
