@@ -22,8 +22,8 @@ const useStyles = makeStyles({
     formImage : {
         boxShadow: '0 0 10px' ,
         backgroundColor: 'white',
-        width: '500px',
-        height: '500px',
+        width: '400px',
+        height: '400px',
         display: 'flex',
         flexWrap: 'wrap',
     },

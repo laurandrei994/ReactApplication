@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import { visuallyHidden } from '@mui/utils';
+import { Link } from 'react-router-dom';
 
 interface Data {
   size: number;
@@ -277,6 +278,12 @@ export default function EnhancedTable() {
 
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
+  const linkStyle = {
+    margin: "20px",
+    color: 'blue',
+    variant: 'button',
+  };
+
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
@@ -359,6 +366,7 @@ export default function EnhancedTable() {
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
+        <Link to="/image" style={linkStyle}> Next Page </Link>
       </Paper>
     </Box>
   );
