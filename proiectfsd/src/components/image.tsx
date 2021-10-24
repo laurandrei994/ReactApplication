@@ -1,11 +1,6 @@
 import { useState } from 'react';
-import { TextField, Box } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { createTheme } from '@material-ui/core/styles'
-
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardMedia from '@material-ui/core/CardMedia';
+import { TextField, Box, Card, CardActionArea, CardMedia } from '@material-ui/core';
+import { makeStyles, createTheme } from '@material-ui/core/styles';
 
 const theme = createTheme({
     spacing: 4,
@@ -22,8 +17,8 @@ const useStyles = makeStyles({
     formImage : {
         boxShadow: '0 0 10px' ,
         backgroundColor: 'white',
-        width: '400px',
-        height: '400px',
+        width: '500px',
+        height: '500px',
         display: 'flex',
         flexWrap: 'wrap',
     },

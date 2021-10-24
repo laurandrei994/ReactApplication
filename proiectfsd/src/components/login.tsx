@@ -1,4 +1,4 @@
-import {Avatar, Button, Checkbox, FormControlLabel, Grid, Link, Paper, TextField, Typography, Box } from '@material-ui/core';
+import {Avatar, Button, Grid, Link, Paper, TextField, Typography, Box } from '@material-ui/core';
 import FaceIcon from '@mui/icons-material/Face';
 import React, { Component } from 'react'
 
@@ -25,7 +25,13 @@ class Login extends Component<any, any> {
     }
 
     buttonClicked = () => {
-        this.props.history.push('/table');
+        if (this.state.email != null && this.state.password != null) {
+            this.props.history.push('/table');
+        }
+        else {
+            alert("Please enter the correct email or the correct password!");
+            console.log("Please enter the email and the password");
+        }
     }
 
     render() {   
@@ -39,8 +45,8 @@ class Login extends Component<any, any> {
                     <Avatar style={{ height: '150px', width:'150px', margin: '85px auto'}}> <FaceIcon/> </Avatar>
                     <Grid item xs={7} spacing={5}>
                         <h2>User Login</h2>
-                        <TextField label='Email' placeholder='Enter email' variant="outlined" fullWidth required margin="dense" />
-                        <TextField label='Password' placeholder='Enter password' type='password' variant="outlined" fullWidth required margin="dense" />
+                        <TextField id="input" label='Email' type="text" placeholder='Enter email' variant="outlined" fullWidth required margin="dense" value={this.state.email} onChange={this.onEmailChange} />
+                        <TextField id="password-input" label='Password' type='password' placeholder='Enter password' variant="outlined" fullWidth required margin="dense" value={this.state.password} onChange={this.onPasswordChange} />
 
                         <Button type='submit' color='primary' variant='contained' style={btstyle} fullWidth onClick={this.buttonClicked}>Login </Button>
                                 
