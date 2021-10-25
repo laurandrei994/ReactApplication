@@ -1,0 +1,67 @@
+ul {list-style-type: none;}
+body {font-family: Times, serif;}
+
+.Calendar {
+  background-color: aqua;
+  margin: 450px;
+  background: linear-gradient(to bottom right, #8330a3,#3193df, #8330a3);
+}
+
+#current_month {
+    color: white;
+  }
+
+.month{
+    padding: 70px 25px;
+    color: white;
+    text-align: center;
+  }
+
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.weekdays {
+  margin: 0;
+  padding: 5px 0;
+  color: white;
+  font-weight: bold;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+}
+
+.days {
+  padding: 15px 0;
+  margin: 0;
+}
+
+.days li {
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.days li .active {
+  padding: 6px;
+  border-radius: 20px;
+  background:  #53b1e4;
+  color: white
+}
+
+#other{
+    color: white;
+    opacity: 20%;
+  }
