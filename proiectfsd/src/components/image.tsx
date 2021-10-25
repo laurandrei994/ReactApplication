@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { TextField, Box, Card, CardActionArea, CardMedia } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import { makeStyles, createTheme } from '@material-ui/core/styles';
 
 const theme = createTheme({
@@ -54,7 +55,7 @@ function ImageForm() {
     }
 
     return(
-        <Box justifyContent="center" alignItems="center" width={800} height={500} margin='50px auto' bgcolor="primary.light">
+        <><Box justifyContent="center" alignItems="center" width={800} height={500} margin='50px auto' bgcolor="primary.light">
             <TextField
                 id="photo-upload"
                 name="upload-photo"
@@ -65,21 +66,17 @@ function ImageForm() {
                 InputLabelProps={{
                     shrink: true,
                 }}
-                onChange={ handleChange }
-            />
-            {
-                file.length > 0 &&
+                onChange={handleChange} />
+            {file.length > 0 &&
                 <Card className={classes.paperRoot} variant="outlined">
                     <CardActionArea>
                         <CardMedia
                             component="img"
                             image={file}
-                            title="Image"
-                        />
+                            title="Image" />
                     </CardActionArea>
-                </Card>
-            }
-        </Box>
+                </Card>}
+        </Box><Link to="/datepicker"> Next Page</Link></>
     )
 }
 
