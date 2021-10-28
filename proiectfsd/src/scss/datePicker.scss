@@ -3,7 +3,9 @@ body {font-family: Times, serif;}
 
 .Calendar {
   background-color: aqua;
-  margin: 450px;
+  margin-top: 25px;
+  margin-left: 500px;
+  width: 380px;
   background: linear-gradient(to bottom right, #8330a3,#3193df, #8330a3);
 }
 
@@ -94,6 +96,24 @@ body {font-family: Times, serif;}
   color: white;
   font-size: 20px;
   text-transform: uppercase;
+}
+
+.month .prev {
+  float: left;
+  padding-top: 10px;
+}
+
+.month .next {
+  float: right;
+  padding-top: 10px;
+}
+
+
+.button{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .weekdays {

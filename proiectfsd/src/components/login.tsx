@@ -1,9 +1,9 @@
 import {Avatar, Button, Grid, Link, Paper, TextField, Typography, Box } from '@material-ui/core';
 import FaceIcon from '@mui/icons-material/Face';
+import AuthentificationContext from '../dataContexts/AuthentificationContext';
 import React, { Component } from 'react'
 
 class Login extends Component<any, any> {
-
     constructor(props: any) {
         super(props);
         this.state = {
@@ -27,10 +27,11 @@ class Login extends Component<any, any> {
     buttonClicked = () => {
         if (this.state.email != null && this.state.password != null) {
             this.props.history.push('/table');
+            const value = this.context;
+            value.setAuth(true);
         }
         else {
             alert("Please enter the correct email or the correct password!");
-            console.log("Please enter the email and the password");
         }
     }
 
@@ -62,5 +63,6 @@ class Login extends Component<any, any> {
         );
     }
 }
+Login.contextType = AuthentificationContext;
 
 export default Login;
