@@ -26,7 +26,7 @@ class Login extends Component<any, any> {
 
     buttonClicked = () => {
         if (this.state.email != null && this.state.password != null) {
-            this.props.history.push('/table');
+            this.props.history.push('/TablePage');
             const value = this.context;
             value.setAuth(true);
         }

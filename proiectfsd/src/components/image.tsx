@@ -76,7 +76,7 @@ function ImageForm() {
                             title="Image" />
                     </CardActionArea>
                 </Card>}
-        </Box><Link to="/datepicker"> Next Page</Link></>
+        </Box><Link to="/DatePicker"> Next Page</Link></>
     )
 }
 

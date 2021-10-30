@@ -16,9 +16,9 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route path="/table" component={Table} />
-          <Route path="/image" component={Image} />
-          <Route path ="/datePicker" component={DatePicker} />
+          <Route path="/TablePage" exact component={Table} />
+          <Route path="/ImageUpload" exact component={Image} />
+          <Route path ="/DatePicker" exact component={DatePicker} />
         </Switch>
     </Router>
   </AuthentificationContext.Provider>

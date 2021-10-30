@@ -352,7 +352,7 @@ export default function EnhancedTable() {
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
-        <Link to="/image" style={linkStyle}> Next Page </Link>
+        <Link to="/ImageUpload" style={linkStyle}> Next Page </Link>
       </Paper>
     </Box>
   );

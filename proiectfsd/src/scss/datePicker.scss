@@ -1,155 +1,352 @@
-ul {list-style-type: none;}
-body {font-family: Times, serif;}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 
-.Calendar {
-  background-color: aqua;
-  margin-top: 25px;
-  margin-left: 500px;
-  width: 380px;
-  background: linear-gradient(to bottom right, #8330a3,#3193df, #8330a3);
-}
+.calendar {
+  $side-padding: 20px;
+  $border-radius: 20px;
+  $accent-br: 50px;
+  width: 400px;
 
-#current_month {
-    color: white;
+  select {
+    background-color: transparent;
+    padding: 15px 20px;
+    text-transform: uppercase;
+    font-weight: lighter;
+    border-radius: 0px;
   }
 
-.button_start{
-  background-color: white;
-  color: black;
-  padding: 14px 40px;
-  width: 190px;
-  border: 1px solid #343534;
-  margin-left: 500px;
-}
+  &__title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font: {
+      family: "Poppins";
+      size: 2rem;
+    }
+    color: #736a6a;
+  }
 
-.button_end{
-  background-color: white;
-  color: black;
-  width: 190px;
-  border: 1px solid #343534;
-  padding: 14px 40px;
-}
-
-.dropbtn {
-  background-color: #3498DB;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #2980B9;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown a:hover {background-color: #ddd;}
-
-.h1 {
-  width: 380px;
-  margin: 5 auto;
-  background: gray;
-  text-align: center;
-}
-
-.h2 {
-  width: 380px;
-  margin: 5 auto;
-  background: red;
-  text-align: center;
-}
-
-.month{
-    padding: 70px 25px;
-    color: white;
+  &__today{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    margin: inherit;
     text-align: center;
-  }
-
-.month ul {
-  margin: 0;
-  padding: 0;
-}
-
-.month ul li {
-  color: white;
-  font-size: 20px;
-  text-transform: uppercase;
-}
-
-.month .prev {
-  float: left;
-  padding-top: 10px;
-}
-
-.month .next {
-  float: right;
-  padding-top: 10px;
-}
-
-
-.button{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.weekdays {
-  margin: 0;
-  padding: 5px 0;
-  color: white;
-  font-weight: bold;
-}
-
-.weekdays li {
-  display: inline-block;
-  width: 13.6%;
-  text-align: center;
-}
-
-.days {
-  padding: 15px 0;
-  margin: 0;
-}
-
-.days li {
-  display: inline-block;
-  width: 13.6%;
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 16px;
-}
-
-.days li .active {
-  padding: 6px;
-  border-radius: 20px;
-  background:  #53b1e4;
-  color: white
-}
-
-#other{
     color: white;
-    opacity: 20%;
+    border-right: solid rgba(198,198,198,255) 1px;
+    font: {
+      family: "Poppins";
+      size: 2rem;
+    }
+    &--text {
+      font-size: 1rem;
+    }
   }
+
+  &__option{
+    border-right: solid rgba(198,198,198,255) 1px;
+  }
+
+  &__opts,
+  &__buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2px;
+    background: #fff linear-gradient(to bottom right, #aa5ced, #3193df);
+  }
+
+  &__triangle {
+    width: 0px;
+    height: 0px;
+    margin-left: calc(50% - 15px);
+    margin-top: -25px;
+    border-top: 10px solid transparent;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 10px solid #588df3;
+    background: transparent;
+  }
+  &__row {
+    width: 100%;
+    height: 0px;
+    margin-top: -1px;
+    border-top: 0px solid transparent;
+    border-left: 0px solid transparent;
+    border-right: 0px solid transparent;
+    border-bottom: 5px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right, #aa5ced, #48a7eeff);
+    background: transparent;
+  }
+
+  &__opts {
+    grid-template-columns: 1fr 1.5fr 1fr;
+    padding: 20px $side-padding;
+  }
+
+  &__optBG {
+    background-color: rgba(67, 195, 218, 0.8);
+  }
+
+  &__body {
+    background: linear-gradient(to bottom right, #800bdc,#3193df, #800bdc)
+  }
+
+  &__days {
+    padding: 0 $side-padding 10px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: linear-gradient(to bottom right, #800bdc,#3193df);
+
+    & > div {
+      text-align: center;
+      font: {
+        weight: 700;
+        size: 1.02rem;
+      }
+      color: #ffffff;
+    }
+  }
+
+  &__dates {
+    padding: 10px $side-padding;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  &__date {
+    $height: calc(400px / 6 - #{$side-padding});
+
+    text-align: center;
+    height: $height;
+    line-height: $height;
+    font: {
+      weight: 600;
+      size: 1.02rem;
+    }
+    cursor: pointer;
+    position: relative;
+    color: aliceblue;
+
+    &::before {
+      content: "";
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0);
+      width: 100%;
+      height: calc(#{$height} * 0.9);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: $accent-br;
+      transition: background-color 0.3s ease;
+    }
+
+    &:not(.calendar__date--selected):not(.calendar__date--grey):hover::before {
+      background-color: rgba(67, 195, 218, 0.8);
+    }
+
+    &--grey {
+      color: rgba(0, 0, 0, 0.22);
+      cursor: not-allowed;
+    }
+
+    &--selected {
+      color: black;
+
+      &::before {
+        background-color: #ffeaec;
+      }
+    }
+
+    &--today {
+      &::before {
+        background-color: #9C5EE3;
+      }
+    }
+
+
+    &--first-date {
+      &::before {
+        border-top-left-radius: var(--accent-br);
+        border-bottom-left-radius: var(--accent-br);
+      }
+    }
+
+    &--last-date {
+      &::before {
+        border-top-right-radius: var(--accent-br);
+        border-bottom-right-radius: var(--accent-br);
+      }
+    }
+
+    &--range-start {
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 3px;
+        border-radius: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #ff374b;
+        width: 10px;
+        height: 4px;
+      }
+    }
+
+    &--range-end {
+      color: #fff;
+
+      &::before {
+        box-shadow: 0 15px 20px -3px rgba(255, 55, 75, 0.35);
+        background-color: #ff374b;
+        border-radius: var(--accent-br);
+        z-index: 1;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        height: calc(var(--height) * 0.9);
+        background-color: #ffeaec;
+        width: 50px;
+        top: 50%;
+        right: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    span {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  &__buttons {
+    padding: 10px $side-padding 20px;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__button {
+    cursor: pointer;
+
+    &--grey {
+      background-color: #f3f4f6;
+      color: #afb2b6;
+    }
+
+    &--primary {
+      background-color: #F261E8;
+      color: #fff;
+      transition: box-shadow 0.3s cubic-bezier(0.21, 0.68, 0.09, 0.27),
+      transform 0.2s linear;
+
+      &:hover {
+        box-shadow: 0 20px 30px -13px rgba(23, 82, 255, 0.45);
+        transform: translateY(-3px);
+      }
+
+      &:active {
+        box-shadow: 0 10px 10px -6px rgba(23, 82, 255, 0.45);
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  &__rangeBody {
+    $border-width: 2px;
+    border: solid rgba(198,198,198,255);
+    min-height: 9vh;
+    border-radius: $border-radius;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+  &__startDate {
+    width: 50%;
+    border-right: solid rgba(198,198,198,255) 1px;
+    display: grid;
+  }
+
+  &__endDate {
+    width: 50%;
+    border-left: solid rgba(198,198,198,255) 1px;
+    display: grid;
+  }
+
+  &__dateHeader {
+    color: rgba(198,198,198,255);
+    font: {
+      family: "Poppins";
+      size: 1.1rem;
+    }
+    margin-left: 2rem;
+  }
+
+  &__selectedStartDate {
+    font: {
+      family: "Poppins";
+      weight: bolder;
+      size: 1.4rem;
+      text-align: left;
+    }
+    margin-left: 2rem;
+    color: rgba(155,123,238,255);
+  }
+
+  &__selectedEndDate {
+    font: {
+      family: "Poppins";
+      weight: bolder;
+      size: 1.4rem;
+      text-align: left;
+    }
+    margin-left: 2rem;
+    color: rgba(72, 167, 238, 255);
+  }
+}
+
+body {
+  display: grid;
+  place-items: center;
+  background-color: #eaedf2;
+  height: 100vh;
+  font: {
+    family: "Poppins", sans-serif;
+    size: 14px;
+  }
+  margin: 3vmin;
+}
+
+select,
+button {
+  font: {
+    family: "Poppins";
+    weight: 700;
+    size: 1.02rem;
+  }
+  border-radius: 20px;
+  outline: none;
+  border: 0;
+  padding: 15px 20px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: rgb(255, 255, 255);
+}
+
+select {
+  background: {
+    color: #800bdc;
+    image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='960px' height='560px' viewBox='0 0 960 560' enable-background='new 0 0 960 560' xml:space='preserve'%3E%3Cg id='Rounded_Rectangle_33_copy_4_1_'%3E%3Cpath d='M480,344.181L268.869,131.889c-15.756-15.859-41.3-15.859-57.054,0c-15.754,15.857-15.754,41.57,0,57.431l237.632,238.937 c8.395,8.451,19.562,12.254,30.553,11.698c10.993,0.556,22.159-3.247,30.555-11.698l237.631-238.937 c15.756-15.86,15.756-41.571,0-57.431s-41.299-15.859-57.051,0L480,344.181z'/%3E%3C/g%3E%3C/svg%3E");
+    size: 24px;
+    repeat: no-repeat;
+    position: calc(100% - 20px) center;
+  }
+}
