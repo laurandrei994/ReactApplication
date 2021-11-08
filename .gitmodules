@@ -1,0 +1,3 @@
+[submodule "proiectfsd_backend"]
+	path = proiectfsd_backend
+	url = https://gitlab.com/laurandrei994/proiectfsd_backend.git
