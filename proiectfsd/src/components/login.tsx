@@ -1,55 +1,42 @@
 import {Avatar, Button, Grid, Link, Paper, TextField, Typography, Box } from '@material-ui/core';
 import FaceIcon from '@mui/icons-material/Face';
 import AuthentificationContext from '../dataContexts/AuthentificationContext';
-import React, { Component } from 'react'
+import React, { Component, useContext } from 'react';
+import useAuth from '../api/hooks/useAuth';
 
-class Login extends Component<any, any> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            email: null,
-            password: null,
-        };
+export default function Login(props: any) {
+    const value = useContext(AuthentificationContext);
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
 
-        this.buttonClicked = this.buttonClicked.bind(this);
-        this.onEmailChange = this.onEmailChange.bind(this);
-        this.onPasswordChange = this.onPasswordChange.bind(this);
+    const onEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail((event.target as any).value)
     }
 
-    onEmailChange(event: any) {
-        this.setState({email: event.target.value})
+    const onPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword((event.target as any).value)
     }
 
-    onPasswordChange(event: any) {
-        this.setState({password: event.target.value})
+    const buttonClicked = async () => {
+        await useAuth.login(email, password);
+        props.history.push('/TablePage');
+        (value as any).setAuth(true);
     }
 
-    buttonClicked = () => {
-        if (this.state.email != null && this.state.password != null) {
-            this.props.history.push('/TablePage');
-            const value = this.context;
-            value.setAuth(true);
-        }
-        else {
-            alert("Please enter the correct email or the correct password!");
-        }
-    }
+    const paperStyle={padding: 20, height: '40vh', width: 600, margin: '50px auto'}
+    const btstyle={margin: '10px auto'}
 
-    render() {   
-        const paperStyle={padding: 20, height: '40vh', width: 600, margin: '50px auto'}
-        const btstyle={margin: '10px auto'}
-
-        return (
-            <Box display="flex" justifyContent="center" alignItems="center" width={800} height={500} margin='50px auto' bgcolor="primary.main">
+    return (
+        <Box display="flex" justifyContent="center" alignItems="center" width={800} height={500} margin='50px auto' bgcolor="primary.main">
             <Paper elevation={10} style={paperStyle}>
                 <Grid container wrap="nowrap" spacing={2}>
                     <Avatar style={{ height: '150px', width:'150px', margin: '85px auto'}}> <FaceIcon/> </Avatar>
                     <Grid item xs={7} spacing={5}>
                         <h2>User Login</h2>
-                        <TextField id="input" label='Email' type="text" placeholder='Enter email' variant="outlined" fullWidth required margin="dense" value={this.state.email} onChange={this.onEmailChange} />
-                        <TextField id="password-input" label='Password' type='password' placeholder='Enter password' variant="outlined" fullWidth required margin="dense" value={this.state.password} onChange={this.onPasswordChange} />
+                        <TextField id="input" label='Email' type="text" placeholder='Enter email' variant="outlined" fullWidth required margin="dense" value={email} onChange={onEmailChange} />
+                        <TextField id="password-input" label='Password' type='password' placeholder='Enter password' variant="outlined" fullWidth required margin="dense" value={password} onChange={onPasswordChange} />
 
-                        <Button type='submit' color='primary' variant='contained' style={btstyle} fullWidth onClick={this.buttonClicked}>Login </Button>
+                        <Button type='submit' color='primary' variant='contained' style={btstyle} fullWidth onClick={buttonClicked}>Login </Button>
                                 
                         <Typography>
                             <Link href="#">
@@ -60,9 +47,5 @@ class Login extends Component<any, any> {
                 </Grid>
             </Paper>
         </Box>
-        );
-    }
+    );
 }
-Login.contextType = AuthentificationContext;
-
-export default Login;
