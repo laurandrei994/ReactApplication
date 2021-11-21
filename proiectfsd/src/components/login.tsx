@@ -5,7 +5,7 @@ import React, { Component, useContext } from 'react';
 import useAuth from '../api/hooks/useAuth';
 
 export default function Login(props: any) {
-    const value = useContext(AuthentificationContext);
+    const authContext = useContext(AuthentificationContext);
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
@@ -18,9 +18,16 @@ export default function Login(props: any) {
     }
 
     const buttonClicked = async () => {
-        await useAuth.login(email, password);
-        props.history.push('/TablePage');
-        (value as any).setAuth(true);
+        useAuth.login(email, password).then(response => {
+            if (response.token) {
+                console.log(response.token);
+                localStorage.setItem("token", response.token);
+                props.history.push("/TablePage");
+                props.setAuth(true);
+            }
+        }).catch (error => {
+            //alert("Error!!");
+        })
     }
 
     const paperStyle={padding: 20, height: '40vh', width: 600, margin: '50px auto'}

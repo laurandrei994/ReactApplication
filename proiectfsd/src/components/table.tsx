@@ -3,6 +3,9 @@ import { alpha } from '@mui/material/styles';
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, Checkbox} from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import AuthentificationContext from '../dataContexts/AuthentificationContext';
+import { userInfo } from 'os';
 interface Data {
   size: number;
   carbs: number;
@@ -208,6 +211,9 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
 };
 
 export default function EnhancedTable() {
+  const authContext = useContext(AuthentificationContext);
+  console.log("Logged in!");
+
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('size');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
