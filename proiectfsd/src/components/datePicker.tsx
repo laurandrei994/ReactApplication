@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../scss/datePicker.scss';
 import BasicTable from './tabledatepicker';
+import axios from 'axios';
 
 const DatePicker = () =>
 {
@@ -15,6 +16,11 @@ const DatePicker = () =>
     const [selectedEndDate, setSelectedEndDate] = useState<number>(0);
     const [selectedMonth, setSelectedMonth] = useState<string>('JAN');
     const [selectedYear, setSelectedYear] = useState<number>(2021);
+
+    const [selectedStartDateRequest, setSelectedStartDateRequest] = useState<string>();
+    const [selectedEndDateRequest, setSelectedEndDateRequest] = useState<string>();
+
+    const vari = axios.get("https://us-central1-proiectfsdgcloud.cloudfunctions.net/getSchedule")
 
     const date = new Date()
     const today = date.getDate();
@@ -58,6 +64,19 @@ const DatePicker = () =>
             }
         }
     };
+
+    const setRequestDates = () => {
+        setSelectedStartDateRequest(`${selectedYear}-${selectedMonth}-${selectedStartDate}`);
+        setSelectedEndDateRequest(`${selectedYear}-${selectedMonth}-${selectedEndDate}`);
+    };
+
+    const onSelectedDatesClick = async () => {
+      const result = await axios.get("https://us-central1-proiectfsdgcloud.cloudfunctions.net/postSchedule", { params: { start_date: `${selectedYear}-${selectedMonth}-${selectedStartDate}`, end_date: `${selectedYear}-${selectedMonth}-${selectedEndDate}`} }).catch((error) => {
+          alert(error);
+      });
+      setRequestDates();
+    };
+
 
     return (
         <div>
@@ -110,9 +129,10 @@ const DatePicker = () =>
             </button>
 
             <button
-                className="calendar__button calendar__button--primary" onClick={openCalendarOnClick}>DONE
+                className="calendar__button calendar__button--primary" onClick={onSelectedDatesClick}>DONE
             </button>
         </div>
+
     </div>)}
 
     <BasicTable/>
