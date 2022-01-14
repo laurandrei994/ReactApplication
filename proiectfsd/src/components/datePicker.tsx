@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import '../scss/datePicker.scss'
+import '../scss/datePicker.scss';
+import BasicTable from './tabledatepicker';
 
 const DatePicker = () =>
 {
@@ -113,6 +114,8 @@ const DatePicker = () =>
             </button>
         </div>
     </div>)}
+
+    <BasicTable/>
         </div>
     )
 };
