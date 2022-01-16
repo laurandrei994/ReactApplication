@@ -46,7 +46,7 @@ const useStyles = makeStyles({
 function ImageForm() {
     const classes = useStyles();
     const [file, setFile] = useState("");
-    const [text, setText] = useState("");
+    //const [text, setText] = useState("");
 
     function handleChange(e: any) {
         let url = URL.createObjectURL(e.target.files[0]);

@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import '../scss/datePicker.scss';
-import BasicTable from './tabledatepicker';
 import axios from 'axios';
+import { Paper, TableContainer } from '@material-ui/core';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
 const DatePicker = () =>
 {
@@ -20,7 +25,13 @@ const DatePicker = () =>
     const [selectedStartDateRequest, setSelectedStartDateRequest] = useState<string>();
     const [selectedEndDateRequest, setSelectedEndDateRequest] = useState<string>();
 
-    const vari = axios.get("https://us-central1-proiectfsdgcloud.cloudfunctions.net/getSchedule")
+    function createTableData(
+        id: number,
+        start_date: string,
+        end_date: string,
+      ) {
+        return {id, start_date, end_date };
+      }
 
     const date = new Date()
     const today = date.getDate();
@@ -47,7 +58,7 @@ const DatePicker = () =>
     }
 
     const setSelectedDate = (event: React.MouseEvent<HTMLDivElement>, index: number) => {
-        if (selectedEndDate==0 || selectedStartDate===0) {
+        if (selectedEndDate===0 || selectedStartDate===0) {
             setSelectedStartDate(index);
             setSelectedEndDate(index);
         }
@@ -69,14 +80,36 @@ const DatePicker = () =>
         setSelectedStartDateRequest(`${selectedYear}-${selectedMonth}-${selectedStartDate}`);
         setSelectedEndDateRequest(`${selectedYear}-${selectedMonth}-${selectedEndDate}`);
     };
+    
+    let rowData: any[] = [];
+
+    let rows = [
+        createTableData(1, "2022-01-01", "2021-12-31"),
+        createTableData(2, "2022-01-07", "2022-01-01"),
+    ];
+
+    const getRows = axios.get("https://us-central1-proiectfsdgcloud.cloudfunctions.net/getSchedule").then(function (response) {
+        console.log("Response: \n");
+        console.log(response.data);
+        rowData = response.data;
+        return response.data;
+    }).catch(function (error) {
+        console.log(error);
+        return error;
+    })
+
 
     const onSelectedDatesClick = async () => {
-      const result = await axios.get("https://us-central1-proiectfsdgcloud.cloudfunctions.net/postSchedule", { params: { start_date: `${selectedYear}-${selectedMonth}-${selectedStartDate}`, end_date: `${selectedYear}-${selectedMonth}-${selectedEndDate}`} }).catch((error) => {
+        let parameters = {
+            start_date: `${selectedYear}-${selectedMonth}-${selectedStartDate}`,
+            end_date: `${selectedYear}-${selectedMonth}-${selectedEndDate}`,
+        };
+      const result = await axios.get("https://us-central1-proiectfsdgcloud.cloudfunctions.net/postSchedule", { params: parameters }).catch((error) => {
           alert(error);
       });
       setRequestDates();
+      console.log("Dates succesfully added!");
     };
-
 
     return (
         <div>
@@ -135,7 +168,34 @@ const DatePicker = () =>
 
     </div>)}
 
-    <BasicTable/>
+    <br/> 
+    <br/>
+
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead sx={{background: "tomato"}}>
+          <TableRow>
+            <TableCell>ID</TableCell>
+            <TableCell align="right">start_date</TableCell>
+            <TableCell align="right">end_date</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody sx={{background: "turquoise"}}>
+          {rows.map((row) => (
+            <TableRow
+              key={row.id}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {row.id}
+              </TableCell>
+              <TableCell align="right">{row.start_date}</TableCell>
+              <TableCell align="right">{row.end_date}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
         </div>
     )
 };

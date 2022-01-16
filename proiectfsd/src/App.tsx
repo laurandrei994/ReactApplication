@@ -3,16 +3,16 @@ import './App.scss';
 import Login from "./components/login";
 import Table from "./components/table";
 import Image from "./components/image";
-import FirstPage from "./components/home";
 import DatePicker from "./components/datePicker";
 import AuthentificationContext from "./dataContexts/AuthentificationContext";
-import { useHistory } from "react-router-dom";
 import {createBrowserHistory} from "history";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import interceptors from "./api/interceptors";
 
 
 function App() {
+  console.clear();
+  
   const history = createBrowserHistory();
   const [isAuth, setAuth] = useState(false);
   interceptors.setupInterceptors(history);
