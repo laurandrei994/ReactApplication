@@ -80,24 +80,34 @@ const DatePicker = () =>
         setSelectedStartDateRequest(`${selectedYear}-${selectedMonth}-${selectedStartDate}`);
         setSelectedEndDateRequest(`${selectedYear}-${selectedMonth}-${selectedEndDate}`);
     };
+
+    let testRows = [
+        createTableData(1, '2022-02-02', '2021-01-01'),
+        createTableData(2, '2021-02-01', '2020-01-01'),
+    ]
     
     let rowData: any[] = [];
-
-    let rows = [
-        createTableData(1, "2022-01-01", "2021-12-31"),
-        createTableData(2, "2022-01-07", "2022-01-01"),
-    ];
+    var rows: { id: number; start_date: string; end_date: string; }[] = [];
+    let index = 1;
 
     const getRows = axios.get("https://us-central1-proiectfsdgcloud.cloudfunctions.net/getSchedule").then(function (response) {
         console.log("Response: \n");
         console.log(response.data);
+
         rowData = response.data;
+        for (let idx = 0; idx < rowData.length; idx++) {
+            let temp = createTableData(index++, rowData[idx].start_date, rowData[idx].end_date);
+            rows.push(temp);
+        }
+        //console.log('TestRows: \n');
+        //console.log(testRows);
+        //console.log("Rows: \n");
+        //console.log(rows);
         return response.data;
     }).catch(function (error) {
         console.log(error);
         return error;
     })
-
 
     const onSelectedDatesClick = async () => {
         let parameters = {
@@ -181,7 +191,7 @@ const DatePicker = () =>
           </TableRow>
         </TableHead>
         <TableBody sx={{background: "turquoise"}}>
-          {rows.map((row) => (
+          {testRows.map((row) => (
             <TableRow
               key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
